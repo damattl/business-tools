@@ -27,7 +27,7 @@
   }
 
 
-  async function handleCustomerDialogMessage(event: CustomEvent<DialogResult>): Promise<void> {
+  async function handleDialogResult(event: CustomEvent<DialogResult>): Promise<void> {
     if (event.detail.success) {
       await new Promise(resolve => setTimeout(resolve, 500))
       customer = await loadCustomer()
@@ -95,7 +95,7 @@
       </button>
       <AddInvoiceDialog bind:show={showInvoiceDialog} customer={customer}/>
       <CustomerDialog
-        on:result={handleCustomerDialogMessage}
+        on:result={handleDialogResult}
         bind:show={showCustomerDialog}
         customer={customer}
         mode={DialogMode.EDIT}

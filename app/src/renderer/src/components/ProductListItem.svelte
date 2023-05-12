@@ -1,12 +1,34 @@
 <script lang="ts">
-  import type { Product } from "$lib/models/product.model"
+  import { Product } from "$lib/models/product.model"
   import ProductDialog from "$lib/components/dialogs/ProductDialog.svelte"
   import { DialogMode } from "$lib/utils/dialog.utils"
+  import type { DialogResult } from "$lib/utils/dialog.utils"
+  import { createEventDispatcher } from "svelte"
+  import { DataService } from "$lib/services/data.service"
 
   export let product: Product
   export let withShadow = false
-
   let showEditDialog = false
+
+  const dispatchProductUpdate = createEventDispatcher<{update: DialogResult}>()
+  async function loadProduct(): Promise<Product> {
+    return await DataService.instance()
+      .get(`/products/${product.id}`, Product)
+      .then((result) => result.result)
+  }
+
+
+  async function handleDialogResult(event: CustomEvent<DialogResult>): Promise<void> {
+    if (event.detail.success) {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      if (event.detail.action === "delete") {
+        // TODO: Dispatch
+        dispatchProductUpdate("update", event.detail)
+      } else {
+        product = await loadProduct()
+      }
+    }
+  }
 </script>
 
 <li class="flex break-all items-center justify-between w-full {withShadow ? 'shadow' : ''} rounded-lg py-4 pl-4 pr-5 text-sm leading-6">
@@ -26,6 +48,7 @@
       <ProductDialog
         mode={DialogMode.EDIT}
         product={product}
+        on:result={handleDialogResult}
         bind:show={showEditDialog}
       />
     </div>

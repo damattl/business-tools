@@ -27,13 +27,13 @@
     </div>
     <div class="col-span-4 col-start-5 gap-2 flex justify-end">
       { #if mode === DialogMode.ADD }
-        <button on:click|preventDefault={() => addCb?(form) : null} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
+        <button on:click|preventDefault={() => addCb ? addCb(form) : null} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
           <i class="uil uil-plus"></i>
           Add
         </button>
       { /if }
       { #if mode === DialogMode.EDIT }
-        <button on:click|preventDefault={() => updateCb?(form) : null} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
+        <button on:click|preventDefault={() => updateCb ? updateCb(form) : null} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
           <i class="uil uil-wrench"></i>
           Edit
         </button>

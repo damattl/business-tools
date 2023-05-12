@@ -4,15 +4,34 @@
   import { Product } from "$lib/models/product.model"
   import ProductDialog from "$lib/components/dialogs/ProductDialog.svelte"
   import { DialogMode } from "$lib/utils/dialog.utils"
+  import type { DialogResult } from "$lib/utils/dialog.utils"
+  import { onMount } from "svelte"
 
   let products: Product[] = []
-  DataService.instance()
-    .getList(`/products`, Product)
-    .then((result) => {
-      products = result.result
-    })
-
   let showDialog = false
+
+  onMount(async () => {
+    products = await loadProducts()
+  })
+
+  async function loadProducts() {
+    return DataService.instance()
+      .getList(`/products`, Product)
+      .then((result) => result.result)
+  }
+
+  async function handleDialogResult(event: CustomEvent<DialogResult>) {
+    if (event.detail.success) {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      products = await loadProducts()
+    }
+  }
+
+  async function handleProductUpdate(event: CustomEvent<DialogResult>): Promise<void> {
+    if (event.detail.success) {
+      products = await loadProducts()
+    }
+  }
 
 </script>
 
@@ -25,12 +44,13 @@
     </button>
   </div>
   { #each products as product }
-    <ProductListItem product={product} withShadow={true}/>
+    <ProductListItem on:update={handleProductUpdate} product={product} withShadow={true}/>
   {/each}
 
 
   <ProductDialog
     mode={DialogMode.ADD}
+    on:result={handleDialogResult}
     bind:show={showDialog}
   />
 </div>

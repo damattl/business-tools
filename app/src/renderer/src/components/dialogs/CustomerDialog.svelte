@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Address, Customer } from "$lib/models/customer.model"
   import { DataService } from "$lib/services/data.service"
-  import Dialog from "./FormDialog.svelte"
+  import FormDialog from "./FormDialog.svelte"
   import { createEventDispatcher } from "svelte"
   import type { DialogResult } from "$lib/utils/dialog.utils"
   import { DialogMode } from "$lib/utils/dialog.utils"
@@ -46,6 +46,7 @@
 
   async function updateCustomer(form: HTMLFormElement): Promise<void> {
     const update = customerFromFormData(form)
+    console.log(update)
     const result = DataService.instance().post(`/customers/${customer.id}`, update, Customer)
     if (result) {
       show = false
@@ -58,7 +59,7 @@
   }
 </script>
 
-<Dialog
+<FormDialog
   mode={mode}
   headline="Customer"
   addCb={addCustomer}
@@ -75,4 +76,4 @@
   <input class="border rounded-lg px-2 py-1 mb-2 col-span-2" value={customer?.address.postalCode ?? null} name="postalCode" type="text" placeholder="Postal Code">
   <input class="border rounded-lg px-2 py-1 mb-2 col-span-6" value={customer?.address.city ?? null} name="city" type="text" placeholder="City">
 
-</Dialog>
+</FormDialog>
