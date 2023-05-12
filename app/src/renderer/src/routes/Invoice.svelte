@@ -7,6 +7,7 @@
   import { onMount } from "svelte"
   import InvoiceItemListItem from "$lib/components/InvoiceItemListItem.svelte"
   import type { DialogResult } from "$lib/utils/dialog.utils"
+  import BackButton from "$lib/components/BackButton.svelte"
 
   export let invoiceId: number
 
@@ -40,6 +41,7 @@
 </script>
 
 {#if invoice}
+  <BackButton/>
   <div class="p-6 shadow rounded-xl box-border">
     <div class="px-4 sm:px-0">
       <h3 class="text-base font-semibold leading-7 text-gray-900">Invoice {calculateInvoiceNumber(invoice)}</h3>

@@ -44,7 +44,6 @@ async function handleDialogResult(event: CustomEvent<DialogResult>): Promise<voi
   <td class="py-2">
     <button class="text-blue-500 hover:text-blue-800" on:click|preventDefault={() => showEditDialog = true}>
       Edit
-      <span class="hidden">, Hidden content</span>
     </button>
     <InvoiceItemDialog
       bind:show={showEditDialog}

@@ -1,17 +1,16 @@
 <script lang="ts">
-  import Dialog from "./Dialog.svelte"
+  import FormDialog from "./FormDialog.svelte"
   import { DataService } from "$lib/services/data.service"
   import { Invoice } from "$lib/models/invoice.model"
   import type { Customer } from "$lib/models/customer.model"
+  import { DialogMode } from "$lib/utils/dialog.utils"
 
   export let show = false
   export let customer: Customer
 
-  let form: HTMLFormElement
-  let dateInput: HTMLFormElement
 
 
-  async function addInvoice(): Promise<void> {
+  async function addInvoice(form: HTMLFormElement): Promise<void> {
     let formData = new FormData(form)
     const invoice =  new Invoice()
     invoice.customerId = customer.id
@@ -26,23 +25,12 @@
   }
 </script>
 
-<Dialog bind:show={show}>
-  <h2 class="mb-4">Add Invoice</h2>
-  <form bind:this={form} class="grid grid-cols-8 gap-x-2">
-    <span class="col-span-4">{customer.firstName} {customer.lastName}</span>
-    <input class="border rounded-lg px-2 py-1 mb-2 col-span-4" name="date" type="date" placeholder="Date">
-
-    <div class="col-span-4">
-      <button on:click|preventDefault={() => {show = false}} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
-        <i class="uil uil-cancel"></i>
-        Cancel
-      </button>
-    </div>
-    <div class="col-span-4 col-start-5 flex justify-end">
-      <button on:click|preventDefault={addInvoice} class="border w-24 hover:shadow-inner transition-shadow py-1 rounded-lg text-sm mt-2">
-        <i class="uil uil-plus"></i>
-        Add
-      </button>
-    </div>
-  </form>
-</Dialog>
+<FormDialog
+  mode={DialogMode.ADD}
+  headline="Invoice"
+  addCb={addInvoice}
+  bind:show={show}
+>
+  <span class="col-span-4">{customer.firstName} {customer.lastName}</span>
+  <input class="border rounded-lg px-2 py-1 mb-2 col-span-4" name="date" type="date" placeholder="Date">
+</FormDialog>

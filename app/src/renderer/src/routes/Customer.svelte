@@ -7,6 +7,7 @@
   import { onMount } from "svelte"
   import type { DialogResult } from "$lib/utils/dialog.utils"
   import { DialogMode } from "$lib/utils/dialog.utils"
+  import BackButton from "$lib/components/BackButton.svelte"
 
   export let customerId: number
 
@@ -36,6 +37,7 @@
 </script>
 
 {#if customer}
+  <BackButton/>
   <div class="p-6 box-border shadow rounded-xl">
     <div class="flex flex-row">
       <div class="px-4 sm:px-0 flex-grow">

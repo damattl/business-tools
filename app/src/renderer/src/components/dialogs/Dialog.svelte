@@ -1,7 +1,8 @@
 <script lang="ts">
-  import {clickOutside} from "$lib/utils/dialog.utils"
+  import { clickOutside } from "$lib/utils/dialog.utils"
 
   export let show = false
+
 </script>
 
 {#if show}
@@ -10,4 +11,5 @@
       <slot></slot>
     </div>
   </div>
+
 {/if}
