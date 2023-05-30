@@ -19,7 +19,7 @@ app.add_middleware(
 @app.post("/render")
 async def handle_render(invoice: Invoice):
     render(invoice)
-    filename = f'filename="invoice-{invoice.number}.docx"'
+    filename = f'filename="Invoice-{invoice.number}.docx"'
     headers = {'Content-Disposition': 'attachment; ' + filename}
     return FileResponse(
         get_invoice_output_path(invoice),

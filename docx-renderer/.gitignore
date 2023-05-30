@@ -1,3 +1,4 @@
 venv
 templates
 invoices
+__pycache__

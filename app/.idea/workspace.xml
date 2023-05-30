@@ -5,14 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6a206f2-9c1c-4d95-a183-311e64f1b20e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/common/graph/client.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/graph/resources.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/ipcConstants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/msal/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/msal/protocolListener.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/msal/provider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/processApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/src/routes/Graph.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/src/services/graph.api.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/renderer/src/utils/graph.utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/models/customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api/models/customer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/models/invoice.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api/models/invoice.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/electron.vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/electron.vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preload/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/preload/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/components/CustomerListItem.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/CustomerListItem.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/components/InvoiceListItem.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/InvoiceListItem.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/src/components/Navigation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/Navigation.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/src/components/ProductListItem.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/ProductListItem.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/components/dialogs/AddInvoiceDialog.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/dialogs/AddInvoiceDialog.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/src/components/dialogs/CustomerDialog.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/dialogs/CustomerDialog.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/src/components/dialogs/FormDialog.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/components/dialogs/FormDialog.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/models/customer.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/models/customer.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/models/invoice.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/models/invoice.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/models/invoice.render.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/models/invoice.render.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/src/routes/Customer.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/routes/Customer.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/src/routes/Home.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/routes/Home.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/src/routes/Products.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/routes/Products.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/routes/Customers.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/routes/Customers.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/routes/Invoice.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/routes/Invoice.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/src/utils/render.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/src/utils/render.utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docx-renderer/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../docx-renderer/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docx-renderer/models/customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../docx-renderer/models/customer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docx-renderer/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/../docx-renderer/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docx-renderer/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../docx-renderer/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +68,12 @@
         <option value="AddInvoiceDialog" />
         <option value="Products" />
         <option value="ProductListItem" />
-        <option value="TypeScript File" />
         <option value="InvoiceItemListItem" />
         <option value="ProductDialog" />
         <option value="Dialog" />
         <option value="BackButton" />
+        <option value="Graph" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -79,6 +111,7 @@
       <recent name="$PROJECT_DIR$/src/renderer/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/common" />
       <recent name="$PROJECT_DIR$/src/renderer/src/components/dialogs" />
     </key>
   </component>
@@ -133,7 +166,10 @@
       <workItem from="1683368049310" duration="10877000" />
       <workItem from="1683395059161" duration="36907000" />
       <workItem from="1683617554853" duration="12735000" />
-      <workItem from="1683874350955" duration="19632000" />
+      <workItem from="1683874350955" duration="20235000" />
+      <workItem from="1684576026919" duration="24806000" />
+      <workItem from="1684773379493" duration="261000" />
+      <workItem from="1684773649103" duration="28822000" />
     </task>
     <servers />
   </component>

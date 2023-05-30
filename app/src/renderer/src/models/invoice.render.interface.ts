@@ -3,6 +3,7 @@ export interface InvoiceRenderData {
   date: string,
   total: number,
   customer: {
+    title: string | null,
     firstName: string,
     lastName: string,
     company: string,

@@ -20,11 +20,13 @@ def generate_context(invoice: Invoice) -> dict[str, str]:
         })
 
     context = {
+        'customer_title': invoice.customer.title,
         'customer_first_name': invoice.customer.firstName,
         'customer_last_name': invoice.customer.lastName,
         'customer_address_1': invoice.customer.address.street + " " + invoice.customer.address.streetNr,
         'customer_address_2': invoice.customer.address.postalCode + " " + invoice.customer.address.city,
         'invoice_number': invoice.number,
+        'invoice_date': invoice.date,
         'invoice_items': item_list,
         'invoice_total': locale.format_string("%.2f", invoice.total)
     }

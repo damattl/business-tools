@@ -5,6 +5,8 @@
   import { DataService } from "$lib/services/data.service"
   import { renderInvoice } from "$lib/utils/render.utils"
   import { tick } from "svelte"
+  import { graphAPI } from "$lib/services/graph.api"
+  import { Customer } from "$lib/models/customer.model"
 
   export let invoice: Invoice
   export let withShadow = false
@@ -16,7 +18,13 @@
     const renderResponse = await renderInvoice(result.result)
     if (renderResponse.ok) {
       const blob = await renderResponse.blob()
-      fileURL = URL.createObjectURL(blob)
+      const file = new File([blob], `Invoice-${calculateInvoiceNumber(invoice)}.docx`)
+
+      const customer = await DataService.instance().get(`/customers/${invoice.customerId}`, Customer).then(result => result.result)
+
+      const uploadResult = await graphAPI.uploadFile(`${customer.firstName} ${customer.lastName}`, file)
+      console.log(uploadResult)
+      fileURL = URL.createObjectURL(file)
       await tick()
       hiddenDownload.click()
     }
@@ -39,7 +47,7 @@
   <div class="ml-4 flex-shrink-0">
     <button on:click={() => handleDownload(invoice.id)} class="font-medium text-indigo-600 hover:text-indigo-500">Download</button>
     {#if fileURL}
-      <a bind:this={hiddenDownload} class="hidden" href={fileURL} download={`invoice-${calculateInvoiceNumber(invoice)}`}>
+      <a bind:this={hiddenDownload} class="hidden" href={fileURL} download={`Invoice-${calculateInvoiceNumber(invoice)}.docx`}>
       </a>
     {/if}
   </div>

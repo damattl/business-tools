@@ -23,6 +23,7 @@ function renderDataFromInvoice(invoice: Invoice): InvoiceRenderData {
         street: invoice.customer.address.street,
         streetNr: invoice.customer.address.streetNr },
       company: invoice.customer.company,
+      title: invoice.customer.title,
       firstName: invoice.customer.firstName,
       lastName: invoice.customer.lastName
     },

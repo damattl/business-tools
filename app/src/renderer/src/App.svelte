@@ -8,6 +8,7 @@
   import Customer from "./routes/Customer.svelte"
   import Invoice from "./routes/Invoice.svelte"
   import Products from "./routes/Products.svelte"
+  import Graph from "$lib/routes/Graph.svelte"
 
   export let url = "/"
 </script>
@@ -25,6 +26,7 @@
         <Invoice invoiceId={params.invoiceId}></Invoice>
       </Route>
       <Route path="/products"><Products/></Route>
+      <Route path="/graph"><Graph/></Route>
       <Route path="/"><Home /></Route>
     </div>
   </div>

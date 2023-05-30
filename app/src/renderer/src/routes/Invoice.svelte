@@ -57,7 +57,7 @@
           <dt class="text-sm font-medium leading-6 text-gray-900">Customer</dt>
           <Link to="/customers/{invoice.customerId}">
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {invoice.customer.firstName} {invoice.customer.lastName}
+              {invoice.customer.title ?? ''} {invoice.customer.firstName} {invoice.customer.lastName}
               {#if invoice.customer.company && invoice.customer.company !== ""}
                 @{invoice.customer.company}
               {/if}

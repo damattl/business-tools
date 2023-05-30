@@ -18,6 +18,10 @@ export class Address extends Model {
 
 @JsonObject("Customer")
 export class Customer extends Model {
+  @JsonProperty("MicrosoftContactId", String, PropertyConvertingMode.IGNORE_NULLABLE)
+  microsoftContactId: string | null
+  @JsonProperty("Title", String, PropertyConvertingMode.IGNORE_NULLABLE)
+  title: string | null
   @JsonProperty("FirstName", String)
   firstName: string
   @JsonProperty("LastName", String)

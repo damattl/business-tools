@@ -28,4 +28,10 @@ import { Link } from "svelte-routing";
       Products
     </div>
   </Link>
+  <Link let:active to="/graph">
+    <div class="px-4 py-2 hover:bg-gray-100 {active ? 'bg-gray-100' : '' }">
+      <i class="uil uil-microsoft text-xl mx-2"></i>
+      Microsoft Graph
+    </div>
+  </Link>
 </nav>

@@ -19,16 +19,19 @@
 <div class="flex flex-col h-full overflow-hidden">
   <div class="flex flex-row justify-between my-4">
     <h2>Customers</h2>
-    <button on:click={() => {showDialog = true}} class="border hover:shadow-inner transition-shadow px-4 py-1 rounded-lg text-sm">
-      <i class="uil uil-plus"></i>
-      Add
-    </button>
+    <div>
+      <button on:click={() => {showDialog = true}} class="border hover:shadow-inner transition-shadow px-4 py-1 rounded-lg text-sm">
+        <i class="uil uil-plus"></i>
+        Add
+      </button>
+    </div>
   </div>
   <div class="flex flex-col overflow-y-scroll flex-grow gap-2">
     { #each customers as customer }
       <CustomerListItem customer={customer} />
     {/each}
   </div>
+
 
   <CustomerDialog bind:show={showDialog}/>
 </div>

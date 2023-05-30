@@ -22,7 +22,9 @@ export let customer: Customer
             <span class="flex-shrink-0 text-gray-400">{customer.company}</span>
           { /if }
         </div>
-        <span class="flex-shrink-0 text-gray-400">Open Invoices: {customer.invoices.length}</span>
+        <span class="flex-shrink-0 text-gray-400">
+          Open Invoices: {customer.invoices.filter(invoice => invoice.status === "OPEN").length}
+        </span>
       </div>
     </div>
   </li>

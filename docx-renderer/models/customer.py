@@ -10,6 +10,7 @@ class Address(BaseModel):
 
 
 class Customer(BaseModel):
+    title: str | None = None
     firstName: str
     lastName: str
     company: str

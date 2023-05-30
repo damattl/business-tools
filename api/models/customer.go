@@ -12,6 +12,7 @@ type Address struct {
 
 type Customer struct {
 	gorm.Model
+	Title     *string
 	FirstName string
 	LastName  string
 	Company   *string
@@ -19,4 +20,6 @@ type Customer struct {
 	Phone     *string
 	Address   *Address  `gorm:"embedded"`
 	Invoices  []Invoice `json:",omitempty"`
+
+	MicrosoftContactId *string
 }
