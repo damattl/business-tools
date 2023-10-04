@@ -2,7 +2,7 @@ import { GraphResource } from "$common/graph/resources"
 import type { AccountInfo } from "@azure/msal-node"
 import { GraphRequest } from "@microsoft/microsoft-graph-client"
 
-export type GraphRequestMode = "GET" | "POST" | "PUT"
+export type GraphRequestMode = "GET" | "GET_STREAM" | "POST" | "PUT"
 
 export interface MsalAPI {
   login: () => Promise<AccountInfo | null>,

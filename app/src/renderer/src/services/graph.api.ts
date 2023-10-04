@@ -1,7 +1,7 @@
 import type { MsalAPI } from "$common/processApi"
 import { protectedResources } from "$common/graph/resources"
 import type { Contact, Drive, DriveItem } from "@microsoft/microsoft-graph-types"
-import { buildResourceConfig, CONTENT_TYPE, getDriveItemPath } from "$lib/utils/graph.utils"
+import { buildResourceConfig, getDriveItemPath } from "$lib/utils/graph.utils"
 
 // @ts-ignore Api exists, but is not recognized by TS
 const api = window.api as MsalAPI
@@ -93,7 +93,7 @@ async function createCustomerDir(name: string) {
   }).then(response => response?.value) as DriveItem
 }
 
-async function uploadFile(customerName: string, file: File) {
+async function uploadFile(customerName: string, file: File, contentType: string) {
   const customersFolder = await getCustomersFolderPath()
   const items = await getItemsInFolder(customersFolder)
 
@@ -111,7 +111,7 @@ async function uploadFile(customerName: string, file: File) {
   const stream = await file.arrayBuffer()
   return await api.makeGraphRequest({
     mode: "PUT",
-    headers: {'Content-Type': CONTENT_TYPE.docx},
+    headers: {'Content-Type': contentType},
     resource: buildResourceConfig(
       `/drives/${invoiceFolder.parentReference.driveId}/items/${invoiceFolder.id}:/${file.name}:/content`,
       ["Files.ReadWrite"],
@@ -120,11 +120,12 @@ async function uploadFile(customerName: string, file: File) {
   }) as DriveItem
 }
 
-async function convertToPDF(path: string) {
+async function downloadAsPDF(item: DriveItem) {
+  console.log(`/drive/items/${item.id}/content?format=pdf`)
   return await api.makeGraphRequest({
-    mode: "GET",
+    mode: "GET_STREAM",
     resource: buildResourceConfig(
-      `${path}/content?format=pdf`,
+      `/drive/items/${item.id}/content?format=pdf`,
       ["Files.ReadWrite"],
     )
   })
@@ -137,5 +138,5 @@ export const graphAPI = {
   getCustomersFolderPath: getCustomersFolderPath,
   createCustomerDir: createCustomerDir,
   uploadFile: uploadFile,
-  convertToPDF: convertToPDF,
+  downloadAsPDF: downloadAsPDF,
 }

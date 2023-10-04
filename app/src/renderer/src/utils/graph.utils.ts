@@ -6,6 +6,7 @@ export const CONTENT_TYPE = {
   docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   json: 'application/json',
   text: 'plain/text',
+  pdf:  'application/pdf'
 }
 
 export function buildResourceConfig(endpoint: string, scopes: string[]): GraphResource {

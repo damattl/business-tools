@@ -12,7 +12,8 @@ type Address struct {
 
 type Customer struct {
 	gorm.Model
-	Title     *string
+	Title *string
+	// FormOfAddress *string TODO
 	FirstName string
 	LastName  string
 	Company   *string

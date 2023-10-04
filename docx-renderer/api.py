@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from models.invoice import Invoice
-from render import render
-from utils import get_invoice_output_path
+from render import render_docx
 
 app = FastAPI()
 
@@ -16,13 +15,16 @@ app.add_middleware(
 )
 
 
-@app.post("/render")
-async def handle_render(invoice: Invoice):
-    render(invoice)
+@app.post("/render/docx")
+def handle_render(invoice: Invoice):
+    output_path = render_docx(invoice)
     filename = f'filename="Invoice-{invoice.number}.docx"'
     headers = {'Content-Disposition': 'attachment; ' + filename}
+    print(invoice)
     return FileResponse(
-        get_invoice_output_path(invoice),
+        output_path,
         headers=headers,
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
+
+

@@ -152,7 +152,7 @@ ipcMain.handle(
 
 
   if (tokenResponse) {
-    const graphAPI = await getGraphClient(tokenResponse.accessToken)
+    const graphAPI = getGraphClient(tokenResponse.accessToken)
       .api(args.resource.endpoint).headers(args.headers ?? {})
 
     switch (args.mode) {
@@ -160,6 +160,18 @@ ipcMain.handle(
         return await graphAPI.post(args.body)
       case "GET":
         return await graphAPI.get();
+      case "GET_STREAM":
+        // eslint-disable-next-line no-case-declarations
+        const stream = await graphAPI.get()
+        try {
+          const buffers: Uint8Array[] = [];
+          for await (const chunk of stream) {
+            buffers.push(chunk);
+          }
+          return Buffer.concat(buffers)
+        }
+        catch (e) { console.log(e) }
+        return null;
       case "PUT":
         return await graphAPI.put(args.body)
       default:

@@ -2,13 +2,16 @@
 import type { InvoiceRenderData } from "../models/invoice.render.interface"
 import type { Invoice } from "../models/invoice.model"
 import { calculateInvoiceNumber, calculateTotal, calculateTotalForInvoice, renderDate } from "./invoice.utils"
+import { RENDER_API } from "$lib/configuration"
+
+export type RenderOutputType = "pdf" | "docx";
 
 function renderDataFromInvoice(invoice: Invoice): InvoiceRenderData {
   const items: { amount: number; price: number; productName: string; total: number }[] = []
   invoice.invoiceItems.forEach(item =>
     items.push({
       amount: item.amount,
-      price: item.customPrice == 0 ? item.product.price : item.customPrice,
+      price: item.customPrice == 0 || item.customPrice == null ? item.product.price : item.customPrice,
       productName: item.product.name,
       total: calculateTotal(item)
     })
@@ -34,10 +37,10 @@ function renderDataFromInvoice(invoice: Invoice): InvoiceRenderData {
   }
 }
 
-export async function renderInvoice(invoice: Invoice): Promise<Response> {
+export async function renderInvoice(invoice: Invoice, mode: RenderOutputType): Promise<Response> {
   const data = renderDataFromInvoice(invoice)
 
-  return await fetch(`http://localhost:8000/render`, {
+  return await fetch(`${RENDER_API}/${mode}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers:{'content-type': 'application/json'},

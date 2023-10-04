@@ -7,6 +7,7 @@
   import { tick } from "svelte"
   import { graphAPI } from "$lib/services/graph.api"
   import { Customer } from "$lib/models/customer.model"
+  import { CONTENT_TYPE } from "$lib/utils/graph.utils"
 
   export let invoice: Invoice
   export let withShadow = false
@@ -14,17 +15,29 @@
   let hiddenDownload: HTMLAnchorElement | undefined
   let fileURL: string | undefined
   async function handleDownload(id: number): Promise<void> {
+    const fileType = "docx"
+
     const result = await DataService.instance().get(`/invoices/${id}`, Invoice)
-    const renderResponse = await renderInvoice(result.result)
+    const invoice = result.result;
+
+    console.log(invoice)
+
+    const renderResponse = await renderInvoice(result.result, fileType)
     if (renderResponse.ok) {
       const blob = await renderResponse.blob()
-      const file = new File([blob], `Invoice-${calculateInvoiceNumber(invoice)}.docx`)
+      const file = new File([blob], `Invoice-${calculateInvoiceNumber(invoice)}.docx`) // TODO: Make variable
 
       const customer = await DataService.instance().get(`/customers/${invoice.customerId}`, Customer).then(result => result.result)
 
-      const uploadResult = await graphAPI.uploadFile(`${customer.firstName} ${customer.lastName}`, file)
-      console.log(uploadResult)
-      fileURL = URL.createObjectURL(file)
+      const docxUploadResult = await graphAPI.uploadFile(`${customer.firstName} ${customer.lastName}`, file, CONTENT_TYPE.docx)
+
+      // Generate PDF
+      const pdfBuffer = await graphAPI.downloadAsPDF(docxUploadResult)
+      const pdf = new File([pdfBuffer], `Invoice-${calculateInvoiceNumber(invoice)}.pdf`)
+
+      await graphAPI.uploadFile(`${customer.firstName} ${customer.lastName}`, pdf, CONTENT_TYPE.pdf)
+
+      fileURL = URL.createObjectURL(pdf)
       await tick()
       hiddenDownload.click()
     }
@@ -47,7 +60,7 @@
   <div class="ml-4 flex-shrink-0">
     <button on:click={() => handleDownload(invoice.id)} class="font-medium text-indigo-600 hover:text-indigo-500">Download</button>
     {#if fileURL}
-      <a bind:this={hiddenDownload} class="hidden" href={fileURL} download={`Invoice-${calculateInvoiceNumber(invoice)}.docx`}>
+      <a bind:this={hiddenDownload} class="hidden" href={fileURL} download={`Invoice-${calculateInvoiceNumber(invoice)}.pdf`}>
       </a>
     {/if}
   </div>
